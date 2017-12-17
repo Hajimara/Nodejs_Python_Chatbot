@@ -5,10 +5,10 @@ var PythonShell = require('python-shell');
 var temp = 'http://nowfashion.com';
 var options ={
 	mode:'text',
-	pythonPath:'',
+	pythonPath:'../usr/bin/python3',
 	pythonOptions:['-u'],
-	scriptPath:'./routes',
-	args:['1','1','2','4']
+	scriptPath:'/routes',
+	args:['value1']
 
 };
 PythonShell.run('node2py.py', options, function (err, results) {
