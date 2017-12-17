@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var Pythonshell = require('python-shell');
+var PythonShell = require('python-shell');
 
 var index = require('./routes/index');
 var keyboard = require('./routes/keyboard');
