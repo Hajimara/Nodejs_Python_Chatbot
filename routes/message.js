@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var util = require("../util");
 var PythonShell = require('python-shell');
-var temp = 'http://nowfashion.com';
+var temp = null;
 var options ={
 	mode:'text',
 	pythonPath:'',
@@ -11,15 +11,17 @@ var options ={
 	args:['1','1','2','4']
 
 };
+
 PythonShell.run('node2py.py', options, function (err, results) {
 
   if (err) throw err;
 
 
   console.log(results);
-
-});
-
+	temp = String(results);	
+	console.log(typeof(results));
+	console.log(typeof(temp));
+	console.log(temp);
 /* POST auto-reply messages. */
 router.post('/', util.checkUserKey,function(req, res, next) {
 
@@ -35,8 +37,6 @@ router.post('/', util.checkUserKey,function(req, res, next) {
     //메뉴1 버튼 누르면
     if(_obj.content == '메뉴1')
     {
-      //"안녕"이라고 메시지 보내고
-      //'누구니' '메롱' 버튼 보여줌
       var massage = {
           "message": {
               "text": temp
@@ -262,5 +262,7 @@ router.post('/', util.checkUserKey,function(req, res, next) {
             'content-type': 'application/json'
         }).send(JSON.stringify(massage));
     }
+});
+
 });
 module.exports = router;

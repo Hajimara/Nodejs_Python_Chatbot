@@ -25,7 +25,7 @@ if __name__ == '__main__':
     button = sys.argv[1]
     #memo = sys.argv[2]
 
-    print("input buttone : " + button)
-    print("--------Before--------")
+  
+  
     buttonTest(button)
-    print("--------after--------")
+  
