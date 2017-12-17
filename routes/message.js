@@ -2,26 +2,31 @@ var express = require('express');
 var router = express.Router();
 var util = require("../util");
 var PythonShell = require('python-shell');
-var temp = null;
+var a = 'Highend';
+var a1 = '최신';
+var a2 = 'Major 10 top';
+var a3 = 'Minor 10 top';
+
+var b = 'Street';
+var b1 = '사이트1';
+var b2 = '사이트2';
+var b3 = '사이트3';
+
+var c = 'Webzine';
+var c1= '국내';
+var c2= '해외';
+
+var argtemp = [0,1];
+ 
 var options ={
 	mode:'text',
 	pythonPath:'',
 	pythonOptions:['-u'],
 	scriptPath:'./routes',
-	args:['1','1','2','4']
+	args:['1','1']
 
 };
 
-PythonShell.run('node2py.py', options, function (err, results) {
-
-  if (err) throw err;
-
-
-  console.log(results);
-	temp = String(results);	
-	console.log(typeof(results));
-	console.log(typeof(temp));
-	console.log(temp);
 /* POST auto-reply messages. */
 router.post('/', util.checkUserKey,function(req, res, next) {
 
@@ -35,143 +40,166 @@ router.post('/', util.checkUserKey,function(req, res, next) {
 
 
     //메뉴1 버튼 누르면
-    if(_obj.content == '메뉴1')
+    if(_obj.content == a)
     {
       var massage = {
           "message": {
-              "text": temp
+              "text": "Highend"
           },
           "keyboard": {
               "type": "buttons",
               "buttons": [
-                  "메뉴1-1",
-                  "메뉴1-2",
+                  a1,
+                  a2,
+		  a3,
 		  "이전으로"
               ]
           }
       };
+	console.log(massage);
+	console.log(a);
+	argtemp[0] = a;
 
+	console.log(argtemp);
       //      카톡으로 전송
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
     }
     //메뉴2이라고 입력되었다면
-    else if(_obj.content == '메뉴2')
+    else if(_obj.content == b)
     {
 
       var massage = {
           "message": {
-              "text": '메뉴 2번 석택.'
+              "text" : 'Street'
           },
           "keyboard": {
               "type": "buttons",
               "buttons": [
-                  "메뉴2-1",
-                  "메뉴2-2",
+                  b1,
+                  b2,
+		  b3,
 		  "이전으로"
               ]
           }
       };
+	argtemp[0] = b;
+        console.log(argtemp);
+	
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
     }
-    else if(_obj.content == '메뉴3')
+    else if(_obj.content == c)
     {
       var massage = {
           "message": {
-              "text": '메뉴 3번 선택'
+              "text": 'Webzine'
           },
           "keyboard": {
               "type": "buttons",
               "buttons": [
-                  "메뉴3-1",
-                  "메뉴3-2",
+                  c1,
+                  c2,
 		  "이전으로"
               ]
           }
       };
-      res.set({
-          'content-type': 'application/json'
-      }).send(JSON.stringify(massage));
-    }
-    else if(_obj.content == '메뉴1-1')
-            {
-              var massage = {
-                  "message": {
-                      "text": '메뉴 1-1번 선택'
-                  },
-                 "keyboard": {
-                      "type": "buttons",
-                    "buttons": [
-                         "메뉴2",
-                         "메뉴3",
-                         "이전으로"
-              ]
-          }
-      };
-      res.set({
-          'content-type': 'application/json'
-      }).send(JSON.stringify(massage));
+	argtemp[0] = c;
 
+      res.set({
+          'content-type': 'application/json'
+      }).send(JSON.stringify(massage));
     }
-	else if(_obj.content == '메뉴1-2')
+    else if(_obj.content == a1)
             {
+                argtemp[1] = a1;
+                console.log(argtemp);		
+		PythonShell.run('node2py.py', options, function (err, results) {
+
+		  if (err) throw err;
+
+		  console.log(results);
+		temp = String(results);	
+		});
+
               var massage = {
                   "message": {
-                      "text": '메뉴 1-2번 선택'
+                      "text": temp
                   },
                  "keyboard": {
                       "type": "buttons",
                     "buttons": [
-                         "메뉴2",
-                         "메뉴3",
+                         b,
+                         c,
                          "이전으로"
               ]
           }
       };
+
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
 
     }
-
-        else if(_obj.content == '메뉴2-1')
+	else if(_obj.content == a2)
             {
+		argtemp[1] = a2;
+                console.log(argtemp);
+		PythonShell.run('node2py.py', options, function (err, results) {
+
+		  if (err) throw err;
+
+		  console.log(results);
+	        temp = String(results);
+		});
+
               var massage = {
                   "message": {
-                      "text": '메뉴 2-1번 선택'
+                      "text": temp
                   },
                  "keyboard": {
                       "type": "buttons",
                     "buttons": [
-                         "메뉴1",
-                         "메뉴3",
+                         b,
+                         c,
                          "이전으로"
               ]
           }
       };
+	 argtemp[1] = a2;
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
 
     }
-	else if(_obj.content == '메뉴2-2')
+	 else if(_obj.content == a3)
             {
+		argtemp[1] = a3;
+                console.log(argtemp);
+		PythonShell.run('node2py.py', options, function (err, results) {
+
+                  if (err) throw err;
+
+                  console.log(results);
+                temp = String(results);
+                });
+
               var massage = {
                   "message": {
-                      "text": '메뉴 2-2번 선택'
+                      "text": temp
                   },
                  "keyboard": {
                       "type": "buttons",
                     "buttons": [
-                         "메뉴1",
-                         "메뉴3",
+                         b,
+                         c,
                          "이전으로"
               ]
           }
       };
+	 argtemp[1] = a3;
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
@@ -179,41 +207,163 @@ router.post('/', util.checkUserKey,function(req, res, next) {
     }
 
 
-	else if(_obj.content == '메뉴3-1')
+        else if(_obj.content == b1)
             {
+		argtemp[1] = b1;
+                console.log(argtemp);
+		PythonShell.run('node2py.py', options, function (err, results) {
+
+                  if (err) throw err;
+
+                  console.log(results);
+                temp = String(results);
+                });
+
+
               var massage = {
                   "message": {
-                      "text": '메뉴 3-1번 선택'
+                      "text": temp
                   },
                  "keyboard": {
                       "type": "buttons",
                     "buttons": [
-                         "메뉴1",
-                         "메뉴2",
+                         a,
+                         c,
                          "이전으로"
               ]
           }
       };
+	 argtemp[1] = b2;
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
 
     }
-	else if(_obj.content == '메뉴3-2')
+	else if(_obj.content == b2)
             {
+		argtemp[1] = b2;
+                console.log(argtemp);
+		PythonShell.run('node2py.py', options, function (err, results) {
+
+                  if (err) throw err;
+
+                  console.log(results);
+                temp = String(results);
+                });
+
+
               var massage = {
                   "message": {
-                      "text": '메뉴 3-2번 선택'
+                      "text": temp
                   },
                  "keyboard": {
                       "type": "buttons",
                     "buttons": [
-                         "메뉴1",
-                         "메뉴2",
+                         a,
+                         c,
                          "이전으로"
               ]
           }
       };
+	 argtemp[1] = b2;
+      res.set({
+          'content-type': 'application/json'
+      }).send(JSON.stringify(massage));
+
+    }
+
+	 else if(_obj.content == b3)
+            {
+		argtemp[1] = b3;
+                console.log(argtemp);
+		PythonShell.run('node2py.py', options, function (err, results) {
+
+                  if (err) throw err;
+
+                  console.log(results);
+                temp = String(results);
+                });
+
+
+              var massage = {
+                  "message": {
+                      "text": temp
+                  },
+                 "keyboard": {
+                      "type": "buttons",
+                    "buttons": [
+                         b,
+                         c,
+                         "이전으로"
+              ]
+          }
+      };
+	 argtemp[1] = b3;
+      res.set({
+          'content-type': 'application/json'
+      }).send(JSON.stringify(massage));
+
+    }
+
+	else if(_obj.content == c1)
+            {
+		argtemp[1] = c1;
+                console.log(argtemp);
+		PythonShell.run('node2py.py', options, function (err, results) {
+
+                  if (err) throw err;
+
+                  console.log(results);
+                temp = String(results);
+                });
+
+
+              var massage = {
+                  "message": {
+                      "text": temp
+                  },
+                 "keyboard": {
+                      "type": "buttons",
+                    "buttons": [
+                         a,
+                         b,
+                         "이전으로"
+              ]
+          }
+      };
+	 argtemp[1] = c1;
+      res.set({
+          'content-type': 'application/json'
+      }).send(JSON.stringify(massage));
+
+    }
+	else if(_obj.content == c2)
+            {
+		argtemp[1] = c2;
+                console.log(argtemp);
+		PythonShell.run('node2py.py', options, function (err, results) {
+
+                  if (err) throw err;
+
+                  console.log(results);
+                temp = String(results);
+                });
+
+
+              var massage = {
+                  "message": {
+                      "text": temp
+                  },
+                 "keyboard": {
+                      "type": "buttons",
+                    "buttons": [
+                         a,
+                         b,
+                         "이전으로"
+              ]
+          }
+      };
+	 argtemp[1] = c2;
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
@@ -229,9 +379,9 @@ router.post('/', util.checkUserKey,function(req, res, next) {
                  "keyboard": {
                       "type": "buttons",
                     "buttons": [
-                         "메뉴1",
-                         "메뉴2",
-                         "메뉴3"
+                         a,
+                         b,
+                         c
               ]
           }
       };
@@ -252,9 +402,9 @@ router.post('/', util.checkUserKey,function(req, res, next) {
             "keyboard": {
                 "type": "buttons",
                 "buttons": [
-                    "메뉴1",
-                    "메뉴2",
-                    "메뉴3"
+                    a,
+                    b,
+                    c
                 ]
             }
         };
@@ -264,5 +414,5 @@ router.post('/', util.checkUserKey,function(req, res, next) {
     }
 });
 
-});
+
 module.exports = router;

@@ -1,6 +1,6 @@
 import sys
 
-def buttonTest(button):
+def buttonTest(a):
     if button == '1':
         ButtonFun01()
     elif button == '2':
@@ -22,8 +22,9 @@ def ButtonFun03():
     print("buttonFuone 03 input")
 
 if __name__ == '__main__':
-    button = sys.argv[1]
+    button = sys.argv
     #memo = sys.argv[2]
+    print(button)
 
   
   
