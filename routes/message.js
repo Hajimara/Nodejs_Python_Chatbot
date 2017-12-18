@@ -3,27 +3,27 @@ var router = express.Router();
 var util = require("../util");
 var PythonShell = require('python-shell');
 var a = 'Highend';
-var a1 = '최신';
-var a2 = 'Major 10 top';
-var a3 = 'Minor 10 top';
+var a1 = 'newest';
+var a2 = 'Major7Top';
+var a3 = 'Minor7Top';
 
 var b = 'Street';
-var b1 = '사이트1';
-var b2 = '사이트2';
-var b3 = '사이트3';
+var b1 = 'MMSCENE';
+var b2 = 'THEFASHIONISTO';
+var b3 = 'KERA';
 
 var c = 'Webzine';
-var c1= '국내';
-var c2= '해외';
+var c1= 'korea';
+var c2= 'foreign country';
 
-var argtemp = [0,1];
+var argtemp = [''];
  
 var options ={
 	mode:'text',
-	pythonPath:'',
+	pythonPath:'/usr/bin/python3',
 	pythonOptions:['-u'],
 	scriptPath:'./routes',
-	args:['1','1']
+	args:[argtemp]
 
 };
 
@@ -56,11 +56,8 @@ router.post('/', util.checkUserKey,function(req, res, next) {
               ]
           }
       };
-	console.log(massage);
-	console.log(a);
-	argtemp[0] = a;
+	
 
-	console.log(argtemp);
       //      카톡으로 전송
       res.set({
           'content-type': 'application/json'
@@ -84,8 +81,6 @@ router.post('/', util.checkUserKey,function(req, res, next) {
               ]
           }
       };
-	argtemp[0] = b;
-        console.log(argtemp);
 	
       res.set({
           'content-type': 'application/json'
@@ -106,7 +101,6 @@ router.post('/', util.checkUserKey,function(req, res, next) {
               ]
           }
       };
-	argtemp[0] = c;
 
       res.set({
           'content-type': 'application/json'
@@ -114,13 +108,12 @@ router.post('/', util.checkUserKey,function(req, res, next) {
     }
     else if(_obj.content == a1)
             {
-                argtemp[1] = a1;
-                console.log(argtemp);		
-		PythonShell.run('node2py.py', options, function (err, results) {
-
+                argtemp[0] = a1;
+                console.log('be'+argtemp);		
+		PythonShell.run('node3py.py', options, function (err, results) {
 		  if (err) throw err;
 
-		  console.log(results);
+		  console.log('py '+results);
 		temp = String(results);	
 		});
 
@@ -145,9 +138,9 @@ router.post('/', util.checkUserKey,function(req, res, next) {
     }
 	else if(_obj.content == a2)
             {
-		argtemp[1] = a2;
+		argtemp[0] = a2;
                 console.log(argtemp);
-		PythonShell.run('node2py.py', options, function (err, results) {
+		PythonShell.run('node3py.py', options, function (err, results) {
 
 		  if (err) throw err;
 
@@ -168,7 +161,6 @@ router.post('/', util.checkUserKey,function(req, res, next) {
               ]
           }
       };
-	 argtemp[1] = a2;
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
@@ -176,9 +168,9 @@ router.post('/', util.checkUserKey,function(req, res, next) {
     }
 	 else if(_obj.content == a3)
             {
-		argtemp[1] = a3;
+		argtemp[0] = a3;
                 console.log(argtemp);
-		PythonShell.run('node2py.py', options, function (err, results) {
+		PythonShell.run('node3py.py', options, function (err, results) {
 
                   if (err) throw err;
 
@@ -199,7 +191,6 @@ router.post('/', util.checkUserKey,function(req, res, next) {
               ]
           }
       };
-	 argtemp[1] = a3;
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
@@ -209,9 +200,9 @@ router.post('/', util.checkUserKey,function(req, res, next) {
 
         else if(_obj.content == b1)
             {
-		argtemp[1] = b1;
+		argtemp[0] = b1;
                 console.log(argtemp);
-		PythonShell.run('node2py.py', options, function (err, results) {
+		PythonShell.run('node3py.py', options, function (err, results) {
 
                   if (err) throw err;
 
@@ -233,7 +224,6 @@ router.post('/', util.checkUserKey,function(req, res, next) {
               ]
           }
       };
-	 argtemp[1] = b2;
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
@@ -241,9 +231,9 @@ router.post('/', util.checkUserKey,function(req, res, next) {
     }
 	else if(_obj.content == b2)
             {
-		argtemp[1] = b2;
+		argtemp[0] = b2;
                 console.log(argtemp);
-		PythonShell.run('node2py.py', options, function (err, results) {
+		PythonShell.run('node3py.py', options, function (err, results) {
 
                   if (err) throw err;
 
@@ -265,7 +255,6 @@ router.post('/', util.checkUserKey,function(req, res, next) {
               ]
           }
       };
-	 argtemp[1] = b2;
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
@@ -274,9 +263,9 @@ router.post('/', util.checkUserKey,function(req, res, next) {
 
 	 else if(_obj.content == b3)
             {
-		argtemp[1] = b3;
+		argtemp[0] = b3;
                 console.log(argtemp);
-		PythonShell.run('node2py.py', options, function (err, results) {
+		PythonShell.run('node3py.py', options, function (err, results) {
 
                   if (err) throw err;
 
@@ -298,7 +287,6 @@ router.post('/', util.checkUserKey,function(req, res, next) {
               ]
           }
       };
-	 argtemp[1] = b3;
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
@@ -307,9 +295,9 @@ router.post('/', util.checkUserKey,function(req, res, next) {
 
 	else if(_obj.content == c1)
             {
-		argtemp[1] = c1;
+		argtemp[0] = c1;
                 console.log(argtemp);
-		PythonShell.run('node2py.py', options, function (err, results) {
+		PythonShell.run('node3py.py', options, function (err, results) {
 
                   if (err) throw err;
 
@@ -331,7 +319,6 @@ router.post('/', util.checkUserKey,function(req, res, next) {
               ]
           }
       };
-	 argtemp[1] = c1;
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
@@ -339,9 +326,9 @@ router.post('/', util.checkUserKey,function(req, res, next) {
     }
 	else if(_obj.content == c2)
             {
-		argtemp[1] = c2;
+		argtemp[0] = c2;
                 console.log(argtemp);
-		PythonShell.run('node2py.py', options, function (err, results) {
+		PythonShell.run('node3py.py', options, function (err, results) {
 
                   if (err) throw err;
 
@@ -363,7 +350,6 @@ router.post('/', util.checkUserKey,function(req, res, next) {
               ]
           }
       };
-	 argtemp[1] = c2;
       res.set({
           'content-type': 'application/json'
       }).send(JSON.stringify(massage));
