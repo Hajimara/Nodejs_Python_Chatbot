@@ -1,33 +1,29 @@
+# -*- coding: utf-8 -*-
+import sys
+import UtilDropbox
 
-
-import dropbox
-import sys,os
-
-token = 'DkLa1dSIYyAAAAAAAAAARcLojKUFw_53cgsvc1HJpwvrwdPKTWTtjW7vnKRfczh2'
-dbx= dropbox.Dropbox(token)
-
-def getUrlLink(btn):
+def btnAction(button):
+    url = ''
+    if button == 'a1':
+        url = UtilDropbox.getUrlLink('A')
+    elif button == 'a2':
+        url = UtilDropbox.getUrlLink('B')
+    elif button == 'a3':
+        url = UtilDropbox.getUrlLink('C')
+    elif button == 'b1':
+        url = UtilDropbox.getUrlLink('D')
+    else:
+        url = UtilDropbox.getUrlLink('/')
+        print("Sorry error")
     
-    btn_list = ['a1','a2','a3','b1','b2','b3','c1','c2']
-
-    if btn not in btn_list:
-        print("Type error")
-        exit()
-   
-
-    DIR = '/' + btn[0] + '/' + btn
-    url = dbx.sharing_create_shared_link(DIR).url
-    print(url)
     return url
 
-
-       
 if __name__ == '__main__':
-   
-    linkMapping = {'newest' : 'a1', 'Major7Top' : 'a2', 'Minor7Top':'a3', 'MMSCENE' : 'b1', 'THEFASHIONISTO' :'b2', 'KERA' :'b3', 'korea' : 'c1', 'foreign country' : 'c2'}
-     
-    #up = {'newest' :'a1'}
-    argv = sys.argv
-    btn = argv[1]
-    btn1 = linkMapping[btn]
-    url = getUrlLink(btn1)
+    
+    linkmapping = {'hypebeastFashion':'a1', 'vogueRunway' :'a2',
+		'hypebeastFootage' :'a3', 'malemodelScene' : 'b1'}
+    
+    btn = sys.argv[1]
+    btn = linkmapping[btn]
+    url = btnAction(btn)
+    print(url)

@@ -3,12 +3,12 @@ var router = express.Router();
 var util = require("../util");
 var PythonShell = require('python-shell');
 var a = 'Highend';
-var a1 = 'newest';
-var a2 = 'Major7Top';
-var a3 = 'Minor7Top';
+var a1 = 'hypebeastFashion';
+var a2 = 'vogueRunway';
+var a3 = 'hypebeastFootage';
 
 var b = 'Street';
-var b1 = 'MMSCENE';
+var b1 = 'malemodelScene';
 var b2 = 'THEFASHIONISTO';
 var b3 = 'KERA';
 
